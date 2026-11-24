@@ -220,13 +220,16 @@ const interior = montarInterior({
   studios, lenis,
   onToggle: (v) => { interiorAberto = v; atualizarFlut(); },
 });
-const revividos = montarRevividos({ studios, secao: $('.revividos'), interior });
+// Bela Vista 1 fica fora da rolagem (foto principal panorâmica); continua na grade final
+const sequencia = studios.map((s, i) => i).filter((i) => studios[i].id !== 'bela-vista-1');
+const revividos = montarRevividos({ studios, sequencia, secao: $('.revividos'), interior });
 ScrollTrigger.create({
   trigger: '.revividos', start: 'top top', end: 'bottom bottom',
-  onUpdate: (s) => revividos.render(s.progress),
-  onRefresh: (s) => revividos.render(s.progress),
+  onUpdate: (s) => revividos.seguir(s.progress),
+  onRefresh: (s) => revividos.seguir(s.progress),
   onToggle: (s) => { noPalco = s.isActive; atualizarFlut(); },
 });
+new IntersectionObserver(([en]) => { revividos.ligado = en.isIntersecting; }).observe($('.revividos'));
 
 // ---------- contato: chaveiro ----------
 const chaveCanvas = $('#chave-canvas');

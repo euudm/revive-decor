@@ -5,8 +5,12 @@ const clamp01 = (v) => Math.min(1, Math.max(0, v));
 const faixa = (p, a, b) => clamp01((p - a) / (b - a));
 const suave = (t) => t * t * (3 - 2 * t);
 
-export function montarRevividos({ studios, secao, interior }) {
+// sequencia: índices (em studios) que entram na rolagem; a grade final mostra todos
+export function montarRevividos({ studios: todos, sequencia, secao, interior }) {
+  const studios = sequencia.map((k) => todos[k]);
   const N = studios.length;
+  // 1,5 tela de rolagem por studio: rolagem rápida não pula fotos
+  secao.style.height = `${N * 150 + 100}vh`;
   const palco = secao.querySelector('.rv-fotos');
   const elNum = secao.querySelector('.rv-num'), elBairro = secao.querySelector('.rv-bairro'), elNome = secao.querySelector('.rv-nome');
   const btVer = secao.querySelector('.rv-ver');
@@ -27,7 +31,7 @@ export function montarRevividos({ studios, secao, interior }) {
       </button>`;
     palco.appendChild(d);
     const bt = d.querySelector('.rv-moldura');
-    bt.addEventListener('click', () => interior.abrir(i, bt));
+    bt.addEventListener('click', () => interior.abrir(sequencia[i], bt));
     return {
       el: d, bt, w: f.w, h: f.h, larg, alt,
       mascara: d.querySelector('.rv-mascara'), dentro: d.querySelector('.rv-mascara-in'), frente: d.querySelector('.rv-frente'),
@@ -101,14 +105,32 @@ export function montarRevividos({ studios, secao, interior }) {
   }
   render(0);
 
-  btVer.addEventListener('click', () => interior.abrir(atual, slides[atual].bt));
+  btVer.addEventListener('click', () => interior.abrir(sequencia[atual], slides[atual].bt));
+
+  // suavização: a cena persegue a rolagem em vez de pular junto com ela
+  let alvo = 0, pAtual = 0, ligado = false, raf = 0;
+  function passo() {
+    pAtual += (alvo - pAtual) * 0.09;
+    if (Math.abs(alvo - pAtual) < 0.00005) pAtual = alvo;
+    render(pAtual);
+    raf = pAtual !== alvo ? requestAnimationFrame(passo) : 0;
+  }
+  function seguir(p) {
+    alvo = p;
+    if (!ligado) { pAtual = p; render(p); return; }
+    if (!raf) raf = requestAnimationFrame(passo);
+  }
 
   // grade final com todos
   const grade = secao.parentElement.querySelector('.rv-grade');
-  grade.innerHTML = studios.map((s, i) => `<li><button type="button" data-i="${i}" aria-label="Ver as fotos do ${s.nome}, ${s.bairro}">
+  grade.innerHTML = todos.map((s, i) => `<li><button type="button" data-i="${i}" aria-label="Ver as fotos do ${s.nome}, ${s.bairro}">
       <img alt="" loading="lazy" decoding="async" src="/studios/${s.fotos[0].id}-m.webp" />
       <span><b>${String(i + 1).padStart(2, '0')}</b>${s.bairro}</span></button></li>`).join('');
   grade.querySelectorAll('button').forEach((b) => b.addEventListener('click', () => interior.abrir(Number(b.dataset.i), b)));
 
-  return { render };
+  return {
+    seguir,
+    // fora da tela salta direto; dentro, suaviza
+    set ligado(v) { ligado = v; },
+  };
 }
