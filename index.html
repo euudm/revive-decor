@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>revivè decor | Reforma completa de studios em São Paulo</title>
+  <meta name="description" content="revivè decor: gerenciamos todas as etapas da sua reforma, do projeto arquitetônico personalizado à decoração e ao aroma. Execução, móveis planejados, marmoraria e vidraçaria. Studios no Brooklin, Vila Mariana, Bela Vista e Consolação." />
+  <meta name="theme-color" content="#efebe4" />
+  <meta property="og:title" content="revivè decor" />
+  <meta property="og:description" content="Compromisso e qualidade em cada etapa." />
+  <meta property="og:image" content="/studios/brooklin-1-01-g.webp" />
+  <link rel="icon" type="image/png" href="/marca/monograma.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+
+  <!-- Loader: o logo cinza ganha cor da esquerda para a direita -->
+  <div id="loader" aria-hidden="true">
+    <div class="ld-logo">
+      <img src="/marca/logo-cinza.png" alt="" class="ld-cinza" />
+      <span class="ld-mascara"><span class="ld-mascara-in"><img src="/marca/logo-ouro.png" alt="" /></span></span>
+    </div>
+    <p class="ld-txt">reviver o espaço</p>
+  </div>
+
+  <header class="topo">
+    <a href="#inicio" class="topo-marca" aria-label="revivè decor, início">
+      <img src="/marca/logo-cinza.png" alt="revivè decor" width="128" height="26" />
+    </a>
+    <nav class="topo-nav" aria-label="Seções">
+      <a href="#inicio">Etapas</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#studios">Studios</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a class="topo-cta js-whats" href="#" target="_blank" rel="noopener">Contate-nos</a>
+  </header>
+
+  <main>
+    <!-- 1. HERO: o studio revive etapa por etapa -->
+    <section id="inicio" class="revive" aria-label="Um studio sendo reformado, etapa por etapa">
+      <div class="revive-palco">
+        <div class="revive-fundo"><span class="revive-quente"></span></div>
+        <canvas id="cena" aria-hidden="true"></canvas>
+        <div class="revive-lite" aria-hidden="true">
+          <img class="lite-cinza" src="/studios/brooklin-1-01-g.webp" alt="" />
+          <img class="lite-cor" src="/studios/brooklin-1-01-g.webp" alt="" />
+        </div>
+
+        <div class="batida batida-intro">
+          <p class="eyebrow">revivè decor · reforma completa</p>
+          <h1 class="titulo-hero">
+            <span class="linha"><span>Todo espaço</span></span>
+            <span class="linha"><span>pode <em>reviver.</em></span></span>
+          </h1>
+          <p class="hero-sub">Gerenciamos todas as etapas da sua reforma, do projeto arquitetônico personalizado até a decoração e o aroma que seu espaço terá.</p>
+          <div class="rolar"><span class="rolar-trilho"><span></span></span>role para reviver</div>
+        </div>
+
+        <div class="batida" data-etapa="1">
+          <span class="batida-num">01</span>
+          <h2>Projeto exclusivo.</h2>
+          <p>Projetistas especializados em design de interiores e arquitetura, atentos às limitações do espaço.</p>
+        </div>
+        <div class="batida" data-etapa="2">
+          <span class="batida-num">02</span>
+          <h2>Demolição e elétrica.</h2>
+          <p>Toda a infraestrutura: demolições, levantamentos e passagens elétricas, preservando o que não muda.</p>
+        </div>
+        <div class="batida" data-etapa="3">
+          <span class="batida-num">03</span>
+          <h2>Pisos, forros e iluminação.</h2>
+          <p>Especificações definidas ainda em projeto, direcionando a equipe ao resultado final.</p>
+        </div>
+        <div class="batida" data-etapa="4">
+          <span class="batida-num">04</span>
+          <h2>Móveis planejados.</h2>
+          <p>Em parceria com a Pacci Planejados: cortes em maquinário de última geração, MDF de excelente procedência e ferragens de alta qualidade.</p>
+        </div>
+        <div class="batida" data-etapa="5">
+          <span class="batida-num">05</span>
+          <h2>Marmoraria.</h2>
+          <p>Pedras instaladas com a mais alta precisão, com recortes para o encaixe perfeito do cooktop.</p>
+        </div>
+        <div class="batida" data-etapa="6">
+          <span class="batida-num">06</span>
+          <h2>Vidraçaria.</h2>
+          <p>Espelhos de alta qualidade e portas reflecta, com acabamento elegante e moderno.</p>
+        </div>
+        <div class="batida" data-etapa="7">
+          <span class="batida-num">07</span>
+          <h2>Decoração e aroma.</h2>
+          <p>A última camada: o que faz o espaço proporcionar renovação e uma vivência única.</p>
+        </div>
+        <div class="batida batida-fim">
+          <h2 class="titulo-fim">Espaço<br /><em>revivido.</em></h2>
+          <p>Compromisso e qualidade em cada etapa.</p>
+        </div>
+
+        <div class="hud" aria-hidden="true">
+          <span class="hud-etapa">etapa <b id="hud-n">01</b> / 07</span>
+          <span class="hud-nome" id="hud-nome">projeto</span>
+          <span class="hud-barra"><span></span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. QUEM SOMOS: o texto revive palavra por palavra -->
+    <section id="quem" class="manifesto">
+      <div class="manifesto-in">
+        <p class="eyebrow">Quem somos</p>
+        <p class="manifesto-txt" id="manifesto">Por que revivè? Somos uma empresa moderna e comprometida com o bem-estar dos nossos clientes. Nossa missão é criar uma experiência nova em cada ambiente que reformamos, para que os espaços de moradia, trabalho ou investimento sejam capazes de proporcionar renovação e uma vivência única, transmutada pelas nossas mãos.</p>
+        <div class="manifesto-pe">
+          <p>Sabemos o quanto seu tempo é valioso. Por isso, nos comprometemos a gerenciar todas as etapas da sua reforma, tornando-a um processo tranquilo e otimizado.</p>
+          <ul class="usos" aria-label="Para quais espaços">
+            <li>Moradia</li><li>Trabalho</li><li>Investimento</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SERVIÇOS: camadas de uma reforma -->
+    <section id="servicos" class="camadas">
+      <div class="cam-palco">
+        <div class="cam-texto">
+          <p class="eyebrow">Uma gestão, todas as etapas</p>
+          <h2 class="titulo-sec">Camada <br />por camada.</h2>
+          <ol class="cam-lista" role="tablist" aria-label="Serviços">
+            <li><button type="button" role="tab" data-i="0" aria-selected="true"><span>01</span>Projetos exclusivos</button></li>
+            <li><button type="button" role="tab" data-i="1" aria-selected="false"><span>02</span>Execução de excelência</button></li>
+            <li><button type="button" role="tab" data-i="2" aria-selected="false"><span>03</span>Móveis planejados</button></li>
+            <li><button type="button" role="tab" data-i="3" aria-selected="false"><span>04</span>Marmoraria</button></li>
+            <li><button type="button" role="tab" data-i="4" aria-selected="false"><span>05</span>Vidraçaria</button></li>
+          </ol>
+          <div class="cam-detalhes" aria-live="polite">
+            <p class="cam-det ativo">Nossos projetos contam com uma equipe de projetistas especializados em design de interiores e arquitetura para proporcionar ideias inovadoras, funcionais e modernas. Uma proposta dinâmica, que se atenta às limitações do espaço, filtrando e sugerindo as melhores soluções.</p>
+            <p class="cam-det">Toda a infraestrutura: demolições, levantamentos, passagens elétricas e acabamentos finos para receber as novas instalações. Os espaços não alterados continuam preservados e em perfeito estado. Pisos e forros com iluminação também acontecem nesta etapa.</p>
+            <p class="cam-det">Em parceria com a Pacci Planejados, empresa de alto padrão com móveis de fábrica. Cortes das chapas em maquinário de última geração, ferragens de alta qualidade, MDF de excelente procedência, ótimo prazo de entrega e montagem eficiente.</p>
+            <p class="cam-det">Pedras instaladas com a mais alta precisão, seja uma peça nova ou a extensão da pedra já existente. Extremo cuidado com os recortes para o encaixe perfeito do cooktop e de outros elementos.</p>
+            <p class="cam-det">Espelhos de alta qualidade e portas reflecta para móveis e cristaleiras. Cada peça é fabricada com cuidado para oferecer durabilidade e um design impecável.</p>
+          </div>
+        </div>
+        <div class="cam-pilha" aria-hidden="true">
+          <div class="cam-iso">
+            <div class="placa placa-0" data-i="0"><div class="placa-topo"><svg viewBox="0 0 200 200"><rect x="14" y="14" width="172" height="172"/><path d="M14 74 H70 V14 M130 14 V60 H186 M70 186 V128 H120 V186 M150 186 V150"/><path class="cota" d="M14 6 H186 M14 2 V10 M186 2 V10"/><circle class="cota" cx="100" cy="100" r="14"/></svg></div><i class="placa-lado a"></i><i class="placa-lado b"></i></div>
+            <div class="placa placa-1" data-i="1"><div class="placa-topo"><svg viewBox="0 0 200 200"><path class="tubo" d="M20 170 V60 Q20 40 40 40 H160 Q180 40 180 60 V100"/><path class="tubo" d="M80 40 V120 H140"/><circle class="caixa-luz" cx="140" cy="120" r="7"/><circle class="caixa-luz" cx="180" cy="100" r="7"/></svg></div><i class="placa-lado a"></i><i class="placa-lado b"></i></div>
+            <div class="placa placa-2" data-i="2"><div class="placa-topo"></div><i class="placa-lado a"></i><i class="placa-lado b"></i></div>
+            <div class="placa placa-3" data-i="3"><div class="placa-topo"></div><i class="placa-lado a"></i><i class="placa-lado b"></i></div>
+            <div class="placa placa-4" data-i="4"><div class="placa-topo"><span class="placa-reflexo"></span></div><i class="placa-lado a"></i><i class="placa-lado b"></i></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. STUDIOS: a fachada -->
+    <section id="studios" class="studios">
+      <div class="studios-cabeca">
+        <p class="eyebrow">Conheça alguns dos nossos studios</p>
+        <h2 class="titulo-sec">Cada janela acesa<br />é um studio <em>revivido.</em></h2>
+        <p class="studios-desc">Na revivè decor, cada projeto é personalizado e único. São diversos processos e etapas que fazem parte de uma renovação no ambiente. Toque numa janela para entrar.</p>
+      </div>
+      <div class="predio-moldura">
+        <div class="predio" id="predio"></div>
+        <div class="predio-base"></div>
+      </div>
+      <ul class="bairros" id="bairros" aria-label="Bairros"></ul>
+    </section>
+
+    <!-- 5. CONTATO: chave na mão -->
+    <section id="contato" class="contato">
+      <div class="contato-chave">
+        <canvas id="chave-canvas" aria-label="Chaveiro da revivè decor. Passe o mouse ou toque para balançar"></canvas>
+        <img class="chave-lite" src="/marca/monograma.png" alt="" aria-hidden="true" />
+        <p class="chave-dica">passe o mouse no chaveiro</p>
+      </div>
+      <div class="contato-texto">
+        <p class="eyebrow">Contate-nos</p>
+        <h2 class="titulo-contato">Vamos reviver<br />o seu espaço?</h2>
+        <p class="contato-sub">Sabemos o quanto seu tempo é valioso. Do projeto à decoração, compromisso e qualidade em cada etapa.</p>
+        <a class="btn-whats js-whats" href="#" target="_blank" rel="noopener">
+          <span>Chamar no WhatsApp</span>
+          <b id="whats-num">(11) 99755-0461</b>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <img src="/marca/logo-cinza.png" alt="revivè decor" width="120" height="25" />
+    <span>Compromisso e qualidade em cada etapa</span>
+  </footer>
+
+  <!-- Interior do studio (abre a partir da janela) -->
+  <div id="interior" class="interior" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Fotos do studio">
+    <div class="int-portal"></div>
+    <div class="int-tunel"><div class="int-mundo"></div></div>
+    <div class="int-topo">
+      <div><p class="int-bairro"></p><h3 class="int-nome"></h3></div>
+      <button type="button" class="int-fechar">Fechar</button>
+    </div>
+    <div class="int-rodape">
+      <button type="button" class="int-ant" aria-label="Foto anterior">Anterior</button>
+      <span class="int-cont">01 / 01</span>
+      <button type="button" class="int-prox" aria-label="Próxima foto">Próxima</button>
+      <button type="button" class="int-outro" hidden>Próximo studio</button>
+    </div>
+    <p class="int-dica">role ou arraste para entrar</p>
+  </div>
+
+  <a class="whats-flutuante js-whats" href="#" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3Zm0 23.6a10.6 10.6 0 0 1-5.4-1.5l-.4-.2-3.9 1 1-3.8-.2-.4A10.6 10.6 0 1 1 16 26.6Zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.7a.6.6 0 0 0 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.7 3.7 0 0 0-1.1 2.7 6.4 6.4 0 0 0 1.4 3.4 14.6 14.6 0 0 0 5.6 4.9c2 .9 2.9.9 3.9.8a3.3 3.3 0 0 0 2.2-1.5 2.7 2.7 0 0 0 .2-1.5c-.1-.2-.3-.3-.7-.5Z"/></svg>
+  </a>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

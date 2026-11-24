@@ -1,0 +1,310 @@
+[
+ {
+  "id": "brooklin-1",
+  "bairro": "Brooklin",
+  "nome": "Studio azul-marinho",
+  "fotos": [
+   {
+    "id": "brooklin-1-01",
+    "w": 1229,
+    "h": 820,
+    "pw": 800,
+    "gw": 1229
+   },
+   {
+    "id": "brooklin-1-02",
+    "w": 1229,
+    "h": 820,
+    "pw": 800,
+    "gw": 1229
+   },
+   {
+    "id": "brooklin-1-03",
+    "w": 1229,
+    "h": 820,
+    "pw": 800,
+    "gw": 1229
+   },
+   {
+    "id": "brooklin-1-04",
+    "w": 1076,
+    "h": 717,
+    "pw": 800,
+    "gw": 1076
+   }
+  ]
+ },
+ {
+  "id": "brooklin-2",
+  "bairro": "Brooklin",
+  "nome": "Studio grafite",
+  "fotos": [
+   {
+    "id": "brooklin-2-01",
+    "w": 1536,
+    "h": 1024,
+    "pw": 800,
+    "gw": 1536
+   },
+   {
+    "id": "brooklin-2-02",
+    "w": 922,
+    "h": 1383,
+    "pw": 800,
+    "gw": 922
+   }
+  ]
+ },
+ {
+  "id": "brooklin-3",
+  "bairro": "Brooklin",
+  "nome": "Studio madeira e concreto",
+  "fotos": [
+   {
+    "id": "brooklin-3-01",
+    "w": 960,
+    "h": 1280,
+    "pw": 800,
+    "gw": 960
+   },
+   {
+    "id": "brooklin-3-02",
+    "w": 959,
+    "h": 1280,
+    "pw": 800,
+    "gw": 959
+   },
+   {
+    "id": "brooklin-3-03",
+    "w": 864,
+    "h": 1152,
+    "pw": 800,
+    "gw": 864
+   },
+   {
+    "id": "brooklin-3-04",
+    "w": 960,
+    "h": 1280,
+    "pw": 800,
+    "gw": 960
+   }
+  ]
+ },
+ {
+  "id": "brooklin-4",
+  "bairro": "Brooklin",
+  "nome": "Studio verde e terracota",
+  "fotos": [
+   {
+    "id": "brooklin-4-01",
+    "w": 960,
+    "h": 1280,
+    "pw": 800,
+    "gw": 960
+   },
+   {
+    "id": "brooklin-4-02",
+    "w": 768,
+    "h": 1024,
+    "pw": 768,
+    "gw": null
+   },
+   {
+    "id": "brooklin-4-03",
+    "w": 960,
+    "h": 1280,
+    "pw": 800,
+    "gw": 960
+   },
+   {
+    "id": "brooklin-4-04",
+    "w": 672,
+    "h": 896,
+    "pw": 672,
+    "gw": null
+   }
+  ]
+ },
+ {
+  "id": "vila-mariana-1",
+  "bairro": "Vila Mariana",
+  "nome": "Studio freijó e branco",
+  "fotos": [
+   {
+    "id": "vila-mariana-1-01",
+    "w": 1229,
+    "h": 1639,
+    "pw": 800,
+    "gw": 1229
+   },
+   {
+    "id": "vila-mariana-1-02",
+    "w": 1195,
+    "h": 896,
+    "pw": 800,
+    "gw": 1195
+   },
+   {
+    "id": "vila-mariana-1-03",
+    "w": 768,
+    "h": 1024,
+    "pw": 768,
+    "gw": null
+   },
+   {
+    "id": "vila-mariana-1-04",
+    "w": 615,
+    "h": 820,
+    "pw": 615,
+    "gw": null
+   }
+  ]
+ },
+ {
+  "id": "vila-mariana-2",
+  "bairro": "Vila Mariana",
+  "nome": "Studio sálvia",
+  "fotos": [
+   {
+    "id": "vila-mariana-2-01",
+    "w": 1076,
+    "h": 1434,
+    "pw": 800,
+    "gw": 1076
+   },
+   {
+    "id": "vila-mariana-2-02",
+    "w": 615,
+    "h": 820,
+    "pw": 615,
+    "gw": null
+   },
+   {
+    "id": "vila-mariana-2-03",
+    "w": 768,
+    "h": 1024,
+    "pw": 768,
+    "gw": null
+   },
+   {
+    "id": "vila-mariana-2-04",
+    "w": 768,
+    "h": 1024,
+    "pw": 768,
+    "gw": null
+   },
+   {
+    "id": "vila-mariana-2-05",
+    "w": 615,
+    "h": 820,
+    "pw": 615,
+    "gw": null
+   },
+   {
+    "id": "vila-mariana-2-06",
+    "w": 768,
+    "h": 1024,
+    "pw": 768,
+    "gw": null
+   }
+  ]
+ },
+ {
+  "id": "bela-vista-1",
+  "bairro": "Bela Vista",
+  "nome": "Studio jardim vertical",
+  "fotos": [
+   {
+    "id": "bela-vista-1-01",
+    "w": 2333,
+    "h": 971,
+    "pw": 800,
+    "gw": 1600
+   },
+   {
+    "id": "bela-vista-1-02",
+    "w": 768,
+    "h": 1024,
+    "pw": 768,
+    "gw": null
+   },
+   {
+    "id": "bela-vista-1-03",
+    "w": 681,
+    "h": 908,
+    "pw": 681,
+    "gw": null
+   },
+   {
+    "id": "bela-vista-1-04",
+    "w": 615,
+    "h": 820,
+    "pw": 615,
+    "gw": null
+   },
+   {
+    "id": "bela-vista-1-05",
+    "w": 615,
+    "h": 820,
+    "pw": 615,
+    "gw": null
+   },
+   {
+    "id": "bela-vista-1-06",
+    "w": 615,
+    "h": 820,
+    "pw": 615,
+    "gw": null
+   }
+  ]
+ },
+ {
+  "id": "bela-vista-2",
+  "bairro": "Bela Vista",
+  "nome": "Studio cinza e madeira",
+  "fotos": [
+   {
+    "id": "bela-vista-2-01",
+    "w": 1361,
+    "h": 1815,
+    "pw": 800,
+    "gw": 1361
+   },
+   {
+    "id": "bela-vista-2-02",
+    "w": 1134,
+    "h": 1512,
+    "pw": 800,
+    "gw": 1134
+   }
+  ]
+ },
+ {
+  "id": "consolacao-1",
+  "bairro": "Consolação",
+  "nome": "Studio grafite e luz",
+  "fotos": [
+   {
+    "id": "consolacao-1-01",
+    "w": 1134,
+    "h": 1512,
+    "pw": 800,
+    "gw": 1134
+   },
+   {
+    "id": "consolacao-1-02",
+    "w": 1134,
+    "h": 1512,
+    "pw": 800,
+    "gw": 1134
+   },
+   {
+    "id": "consolacao-1-03",
+    "w": 1361,
+    "h": 1815,
+    "pw": 800,
+    "gw": 1361
+   }
+  ]
+ }
+]

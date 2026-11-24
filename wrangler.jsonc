@@ -1,0 +1,6 @@
+// Publicação no Cloudflare (Workers com assets estáticos): npm run build && wrangler deploy
+{
+  "name": "revive-decor",
+  "compatibility_date": "2026-11-01",
+  "assets": { "directory": "./dist" }
+}
