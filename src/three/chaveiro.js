@@ -199,6 +199,8 @@ export async function criarChaveiro(canvas, { leve = false } = {}) {
   await renderer.compileAsync(cena, camera).catch(() => renderer.compile(cena, camera));
   await ceder();
   renderer.initTexture(matTag.map);
+  // primeiro quadro já desenhado no loader: o primeiro "present" do canvas não cai na rolagem
+  renderer.render(cena, camera);
   raf = requestAnimationFrame(quadro);
 
   return {

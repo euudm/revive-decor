@@ -2,7 +2,8 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 import studios from './data/studios.json';
-import { montarFachada } from './modules/fachada.js';
+import { montarInterior } from './modules/interior.js';
+import { montarCorredor } from './modules/corredor.js';
 
 gsap.registerPlugin(ScrollTrigger);
 // no celular a barra de endereço muda a altura da tela ao rolar: não recalcular por isso
@@ -73,9 +74,20 @@ const revelaLogo = gsap.timeline()
   .to('.ld-mascara', { xPercent: 100, duration: 1.5, ease: 'power2.inOut' }, 0.2)
   .to('.ld-mascara-in', { xPercent: -100, duration: 1.5, ease: 'power2.inOut' }, 0.2);
 
+// O chaveiro (segundo contexto WebGL) nasce durante o loader: criá-lo no meio da
+// rolagem travava a página por mais de um segundo.
+let chaveiro = null;
+const chaveiroPronto = comGL
+  ? cenaPronta.then(() => import('./three/chaveiro.js'))
+    .then(({ criarChaveiro }) => criarChaveiro(document.querySelector('#chave-canvas'), { leve }))
+    .then((c) => { chaveiro = c; })
+    .catch((err) => { console.warn('[revive] chaveiro indisponível', err); })
+  : Promise.resolve();
+
 Promise.all([
   Promise.race([document.fonts.ready, new Promise((ok) => setTimeout(ok, 3000))]),
   cenaPronta,
+  Promise.race([chaveiroPronto, new Promise((ok) => setTimeout(ok, 2500))]),
   new Promise((ok) => setTimeout(ok, 1500)),
 ]).then(() => revelaLogo.then()).then(abrir);
 setTimeout(abrir, 9000);
@@ -200,52 +212,35 @@ botoesCam.forEach((b, i) => b.addEventListener('click', () => {
   rolarPara(stCam.start + (stCam.end - stCam.start) * p);
 }));
 
-// ---------- studios: fachada ----------
+// ---------- studios: corredor do prédio ----------
 const flut = $('.whats-flutuante');
-let interiorAberto = false;
-const fachada = montarFachada({
-  studios, predio: $('#predio'), lenis,
-  onToggle: (v) => { interiorAberto = v; flut.classList.toggle('on', !v && flutOn); },
+let interiorAberto = false, noCorredor = false, flutOn = false;
+const atualizarFlut = () => flut.classList.toggle('on', flutOn && !interiorAberto && !noCorredor);
+const interior = montarInterior({
+  studios, lenis,
+  onToggle: (v) => { interiorAberto = v; atualizarFlut(); },
 });
-ScrollTrigger.create({ trigger: '#predio', start: 'top 70%', once: true, onEnter: () => fachada.acender() });
-const porBairro = [];
-studios.forEach((s) => {
-  let b = porBairro.find((x) => x.nome === s.bairro);
-  if (!b) porBairro.push((b = { nome: s.bairro, n: 0 }));
-  b.n++;
+const corredor = montarCorredor({ studios, secao: $('#studios'), interior, toque });
+ScrollTrigger.create({
+  trigger: '#studios', start: 'top top', end: 'bottom bottom',
+  onUpdate: (s) => { corredor.progresso = s.progress; },
+  onRefresh: (s) => { corredor.progresso = s.progress; },
+  onToggle: (s) => { noCorredor = s.isActive; atualizarFlut(); },
 });
-$('#bairros').innerHTML = porBairro.map((b) =>
-  `<li><button type="button" data-bairro="${b.nome}">${b.nome} <b>${b.n}</b> ${b.n > 1 ? 'studios' : 'studio'}</button></li>`).join('');
-$$('#bairros button').forEach((b) => b.addEventListener('click', () => {
-  fachada.acender();
-  fachada.destacarBairro(b.dataset.bairro);
-  $('#predio').scrollIntoView({ behavior: reduzido ? 'auto' : 'smooth', block: 'center' });
-}));
+new IntersectionObserver(([en]) => { corredor.ativo = en.isIntersecting; }).observe($('#studios'));
 
 // ---------- contato: chaveiro ----------
 const chaveCanvas = $('#chave-canvas');
-let chaveiro = null;
 if (comGL) {
-  let criado = false, visivel = false;
-  // monta com folga (antes de aparecer); o loop só roda quando está na tela
-  new IntersectionObserver(([en]) => {
-    visivel = en.isIntersecting;
-    if (chaveiro) chaveiro.ativo = visivel;
-  }).observe(chaveCanvas);
-  new IntersectionObserver(async ([en]) => {
-    if (en.isIntersecting && !criado) {
-      criado = true;
-      try {
-        const { criarChaveiro } = await import('./three/chaveiro.js');
-        chaveiro = await criarChaveiro(chaveCanvas, { leve });
-        chaveiro.ativo = visivel;
-        chaveiro.empurrar(1.6, 0.4);
-      } catch (err) {
-        console.warn('[revive] chaveiro indisponível', err);
-        semGL();
-      }
-    }
-  }, { rootMargin: '1200px' }).observe(chaveCanvas);
+  let visivel = false, empurrado = false;
+  // o loop só roda quando o chaveiro está na tela
+  const ligar = () => {
+    if (!chaveiro) return;
+    chaveiro.ativo = visivel;
+    if (visivel && !empurrado) { empurrado = true; chaveiro.empurrar(1.6, 0.4); }
+  };
+  new IntersectionObserver(([en]) => { visivel = en.isIntersecting; ligar(); }).observe(chaveCanvas);
+  chaveiroPronto.then(() => { if (!chaveiro) semGL(); ligar(); });
   // a rolagem chacoalha as chaves
   ScrollTrigger.create({
     trigger: '#contato', start: 'top bottom', end: 'bottom top',
@@ -255,8 +250,8 @@ if (comGL) {
 if (toque) $('.chave-dica').textContent = 'toque no chaveiro';
 
 // ---------- revelações de texto ----------
-$$('.titulo-sec, .studios-desc, .manifesto-pe > *, .titulo-contato, .contato-sub, .btn-whats').forEach((el) => {
-  if (el.closest('.camadas')) return;
+$$('.titulo-sec, .manifesto-pe > *, .titulo-contato, .contato-sub, .btn-whats').forEach((el) => {
+  if (el.closest('.camadas') || el.closest('.corredor')) return;
   gsap.from(el, { y: 40, opacity: 0, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 90%' } });
 });
 
@@ -264,10 +259,9 @@ $$('.titulo-sec, .studios-desc, .manifesto-pe > *, .titulo-contato, .contato-sub
 const topo = $('.topo');
 ScrollTrigger.create({ start: 60, end: 'max', onToggle: (s) => topo.classList.toggle('solido', s.isActive) });
 ScrollTrigger.create({ trigger: '#studios', start: 'top 60px', end: 'bottom 60px', onToggle: (s) => topo.classList.toggle('noite', s.isActive) });
-let flutOn = false;
 ScrollTrigger.create({
   trigger: '#quem', start: 'top center', endTrigger: '#contato', end: 'top 80%',
-  onToggle: (s) => { flutOn = s.isActive; flut.classList.toggle('on', flutOn && !interiorAberto); },
+  onToggle: (s) => { flutOn = s.isActive; atualizarFlut(); },
 });
 
 // recalcula posições quando fontes e imagens terminam de carregar
