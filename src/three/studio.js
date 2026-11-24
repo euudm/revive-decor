@@ -268,9 +268,18 @@ export async function criarStudio(canvas, { leve = false } = {}) {
   cena.add(piso);
 
   // céu e cidade pela janela
-  // fica logo atrás da parede, do tamanho da abertura com folga: de nenhum ângulo aparece fora do prédio
-  const ceu = new THREE.Mesh(new THREE.PlaneGeometry(1.95, 1.9), M.ceu);
-  ceu.position.set((JAN.x0 + JAN.x1) / 2, (JAN.y0 + JAN.y1) / 2, -SZ - EP - 0.12);
+  // vista da cidade: colada atrás da parede e só um pouco maior que a abertura,
+  // então nunca escapa pela lateral do prédio
+  const ceu = new THREE.Mesh(new THREE.PlaneGeometry(JAN.x1 - JAN.x0 + 0.16, JAN.y1 - JAN.y0 + 0.16), M.ceu);
+  ceu.position.set((JAN.x0 + JAN.x1) / 2, (JAN.y0 + JAN.y1) / 2, -SZ - EP - 0.02);
+
+  // caixilho de alumínio preto e peitoril: lê como janela desde a obra
+  const mJ = M.metal;
+  const xc = (JAN.x0 + JAN.x1) / 2, yc = (JAN.y0 + JAN.y1) / 2, wj = JAN.x1 - JAN.x0, hj = JAN.y1 - JAN.y0, zj = -SZ - EP / 2;
+  caixa(wj + 0.08, 0.05, EP + 0.02, mJ, xc, JAN.y1 + 0.005, zj);
+  caixa(0.05, hj + 0.08, EP + 0.02, mJ, JAN.x0 - 0.005, yc, zj);
+  caixa(0.05, hj + 0.08, EP + 0.02, mJ, JAN.x1 + 0.005, yc, zj);
+  caixa(wj + 0.16, 0.035, EP + 0.12, M.granito, xc, JAN.y0 - 0.01, zj + 0.05, { uv: 1 / 0.8 }); // peitoril
   cena.add(ceu);
 
   // ---------- 01 projeto: planta desenhada no piso ----------
@@ -554,7 +563,7 @@ export async function criarStudio(canvas, { leve = false } = {}) {
     { p: 0.41, pos: v3(6.8, 5.2, 7.2), olho: v3(-0.2, 0.8, -0.3) },
     { p: 0.56, pos: v3(5.5, 3.5, 6.8), olho: v3(-0.6, 1.0, -0.5) },
     { p: 0.685, pos: v3(1.9, 2.9, 4.4), olho: v3(-1.8, 0.95, 0.45) },
-    { p: 0.775, pos: v3(1.4, 1.9, 2.2), olho: v3(-1.6, 1.3, -1.1) },
+    { p: 0.775, pos: v3(3.3, 2.9, 3.8), olho: v3(-0.4, 1.25, -1.0) },
     { p: 0.88, pos: v3(5.0, 2.8, 5.8), olho: v3(-0.3, 0.9, -0.5) },
     { p: 1.0, pos: v3(6.2, 3.9, 7.2), olho: v3(-0.2, 0.9, -0.3) },
   ];

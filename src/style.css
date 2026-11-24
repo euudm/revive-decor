@@ -98,6 +98,11 @@ em { font-style: normal; }
 .revive-fundo { position: absolute; inset: 0; background: radial-gradient(120% 90% at 65% 40%, #d8d5cf, #c3c0b9); }
 .revive-quente { position: absolute; inset: 0; opacity: 0; background: radial-gradient(110% 90% at 65% 45%, #f6eee2, #e8dccb 70%); }
 #cena { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+/* véu fixo atrás do texto: quando a câmera chega perto, o studio não apaga a escrita */
+.revive-veu {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(90deg, rgba(236, 231, 223, 0.95) 0%, rgba(236, 231, 223, 0.88) 30%, rgba(236, 231, 223, 0) 50%);
+}
 .revive-lite { display: none; }
 
 .batida {
@@ -221,8 +226,10 @@ em { font-style: normal; }
 .placa-lado { position: absolute; display: block; }
 .placa-lado.a { left: 0; right: 0; bottom: 0; height: 14px; transform-origin: 50% 100%; transform: rotateX(90deg); }
 .placa-lado.b { top: 0; bottom: 0; right: 0; width: 14px; transform-origin: 100% 50%; transform: rotateY(-90deg); }
-.placa { opacity: 0.4; transition: opacity 0.5s; }
-.placa.ativa { opacity: 1; }
+/* a opacidade vai nas faces, nunca na placa: opacidade num elemento 3D achata ele
+   e a espessura (as faces laterais) some até a transição acabar */
+.placa > * { opacity: 0.4; transition: opacity 0.5s; }
+.placa.ativa > * { opacity: 1; }
 
 .placa-0 .placa-topo {
   background:
@@ -408,6 +415,7 @@ em { font-style: normal; }
   .topo-cta { padding: 8px 14px; font-size: 13px; }
 
   .revive { height: 800vh; }
+  .revive-veu { display: none; }
   .revive-palco::after {
     content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 52%; pointer-events: none;
     background: linear-gradient(180deg, rgba(239, 235, 228, 0), rgba(239, 235, 228, 0.86) 38%, rgba(239, 235, 228, 0.96));
