@@ -3,7 +3,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 import studios from './data/studios.json';
 import { montarInterior } from './modules/interior.js';
-import { montarCorredor } from './modules/corredor.js';
+import { montarRevividos } from './modules/revividos.js';
 
 gsap.registerPlugin(ScrollTrigger);
 // no celular a barra de endereço muda a altura da tela ao rolar: não recalcular por isso
@@ -212,22 +212,21 @@ botoesCam.forEach((b, i) => b.addEventListener('click', () => {
   rolarPara(stCam.start + (stCam.end - stCam.start) * p);
 }));
 
-// ---------- studios: corredor do prédio ----------
+// ---------- studios revividos ----------
 const flut = $('.whats-flutuante');
-let interiorAberto = false, noCorredor = false, flutOn = false;
-const atualizarFlut = () => flut.classList.toggle('on', flutOn && !interiorAberto && !noCorredor);
+let interiorAberto = false, noPalco = false, flutOn = false;
+const atualizarFlut = () => flut.classList.toggle('on', flutOn && !interiorAberto && !noPalco);
 const interior = montarInterior({
   studios, lenis,
   onToggle: (v) => { interiorAberto = v; atualizarFlut(); },
 });
-const corredor = montarCorredor({ studios, secao: $('#studios'), interior, toque });
+const revividos = montarRevividos({ studios, secao: $('.revividos'), interior });
 ScrollTrigger.create({
-  trigger: '#studios', start: 'top top', end: 'bottom bottom',
-  onUpdate: (s) => { corredor.progresso = s.progress; },
-  onRefresh: (s) => { corredor.progresso = s.progress; },
-  onToggle: (s) => { noCorredor = s.isActive; atualizarFlut(); },
+  trigger: '.revividos', start: 'top top', end: 'bottom bottom',
+  onUpdate: (s) => revividos.render(s.progress),
+  onRefresh: (s) => revividos.render(s.progress),
+  onToggle: (s) => { noPalco = s.isActive; atualizarFlut(); },
 });
-new IntersectionObserver(([en]) => { corredor.ativo = en.isIntersecting; }).observe($('#studios'));
 
 // ---------- contato: chaveiro ----------
 const chaveCanvas = $('#chave-canvas');
@@ -251,7 +250,7 @@ if (toque) $('.chave-dica').textContent = 'toque no chaveiro';
 
 // ---------- revelações de texto ----------
 $$('.titulo-sec, .manifesto-pe > *, .titulo-contato, .contato-sub, .btn-whats').forEach((el) => {
-  if (el.closest('.camadas') || el.closest('.corredor')) return;
+  if (el.closest('.camadas')) return;
   gsap.from(el, { y: 40, opacity: 0, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 90%' } });
 });
 
